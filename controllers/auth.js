@@ -22,8 +22,6 @@ router.post('/signup', function(req, res) {
     if (created) {
       passport.authenticate('local', {
         successRedirect: '/',
-        failureRedirect: '/auth/login',
-        failureFlash: 'An error occurred. Try again',
         successFlash: 'Account created and logged in'
       })(req, res);
     } else {
