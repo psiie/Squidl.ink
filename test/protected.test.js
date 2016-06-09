@@ -1,7 +1,14 @@
 var expect = require('chai').expect;
 var request = require('supertest');
 var app = require('../index');
+var db = require('../models');
 var agent = request.agent(app);
+
+before(function(done) {
+  db.sequelize.sync({ force: true }).then(function() {
+    done();
+  });
+});
 
 describe('GET /protected', function() {
   it('should redirect to /auth/login if not logged in', function(done) {
