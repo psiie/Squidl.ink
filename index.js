@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var passport = require('./config/ppConfig');
 var session = require('express-session');
 var flash = require('connect-flash');
+var isLoggedIn = require('./middleware/isLoggedIn');
 var app = express();
 
 app.set('view engine', 'ejs');
@@ -29,7 +30,7 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.get('/protected', function(req, res) {
+app.get('/protected', isLoggedIn, function(req, res) {
   res.render('protected');
 });
 
