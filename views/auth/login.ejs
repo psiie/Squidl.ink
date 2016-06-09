@@ -1,9 +1,13 @@
 <form action="/auth/login" method="POST">
-  <label for="authEmail">Email</label>
-  <input id="authEmail" type="email" name="email">
+  <div class="form-group">
+    <label for="authEmail">Email</label>
+    <input id="authEmail" class="form-control" type="email" name="email">
+  </div>
 
-  <label for="authPassword">Password</label>
-  <input id="authPassword" type="password" name="password">
+  <div class="form-group">
+    <label for="authPassword">Password</label>
+    <input id="authPassword" class="form-control" type="password" name="password">
+  </div>
 
-  <input type="submit">
+  <input class="btn btn-primary" type="submit">
 </form>

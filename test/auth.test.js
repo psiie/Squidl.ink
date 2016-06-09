@@ -40,7 +40,9 @@ describe('Auth Controller', function() {
       request(app).get('/auth/login')
       .expect(200, done);
     });
+  });
 
+  describe('POST /auth/login', function() {
     it('should redirect to / on success', function(done) {
       request(app).post('/auth/login')
       .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -60,19 +62,6 @@ describe('Auth Controller', function() {
         password: 'p'
       })
       .expect('Location', '/auth/login')
-      .expect(302, done);
-    });
-  });
-
-  describe('POST /auth/login', function() {
-    it('should redirect to /', function(done) {
-      request(app).post('/auth/login')
-      .set('Content-Type', 'application/x-www-form-urlencoded')
-      .send({
-        email: 'new@new.co',
-        password: 'password'
-      })
-      .expect('Location', '/')
       .expect(302, done);
     });
   });
