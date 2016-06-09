@@ -6,7 +6,7 @@
     "start": "node index.js",
     "lint:js": "node_modules/eslint/bin/eslint.js ./ ./**/*.js --fix; exit 0",
     "lint:css": "node_modules/csslint/cli.js public/css/; exit 0",
-    "test": "node_modules/mocha/bin/mocha"
+    "test": "NODE_ENV=test node_modules/mocha/bin/mocha"
   },
   "license": "ISC",
   "devDependencies": {
