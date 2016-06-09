@@ -18,10 +18,8 @@ describe('Auth Controller', function() {
         name: 'Brian',
         password: 'password'
       })
-      .expect(302, done)
-      .expect(function(res) {
-        expect(res.headers.location).to.equal('/');
-      });
+      .expect('Location', '/')
+      .expect(302, done);
     });
 
     it('should redirect to /auth/signup on failure', function(done) {
@@ -32,10 +30,8 @@ describe('Auth Controller', function() {
         name: 'Brian',
         password: 'p'
       })
-      .expect(302, done)
-      .expect(function(res) {
-        expect(res.headers.location).to.equal('/auth/signup');
-      });
+      .expect('Location', '/auth/signup')
+      .expect(302, done);
     });
   });
 
@@ -52,10 +48,8 @@ describe('Auth Controller', function() {
         email: 'new@new.co',
         password: 'password'
       })
-      .expect(302, done)
-      .expect(function(res) {
-        expect(res.headers.location).to.equal('/');
-      });
+      .expect('Location', '/')
+      .expect(302, done);
     });
 
     it('should redirect to /auth/login on failure', function(done) {
@@ -65,10 +59,8 @@ describe('Auth Controller', function() {
         email: 'new@new.co',
         password: 'p'
       })
-      .expect(302, done)
-      .expect(function(res) {
-        expect(res.headers.location).to.equal('/auth/login');
-      });
+      .expect('Location', '/auth/login')
+      .expect(302, done);
     });
   });
 
@@ -80,16 +72,16 @@ describe('Auth Controller', function() {
         email: 'new@new.co',
         password: 'password'
       })
-      .expect(302, done)
-      .expect(function(res) {
-        expect(res.headers.location).to.equal('/');
-      });
+      .expect('Location', '/')
+      .expect(302, done);
     });
   });
 
   describe('GET /auth/logout', function() {
     it('should redirect to /', function(done) {
-      request(app).get('/auth/logout').expect(302, done);
+      request(app).get('/auth/logout')
+      .expect('Location', '/')
+      .expect(302, done);
     });
   });
 });
