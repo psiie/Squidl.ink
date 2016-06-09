@@ -4,7 +4,8 @@
   "env": {
     "browser": true,
     "jquery": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
 
   "globals": {},
