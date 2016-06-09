@@ -75,9 +75,21 @@ describe('Creating a User', function() {
 
 describe('User instance methods', function() {
   describe('validPassword', function() {
-    it('should validate a password', function(done) {
+    it('should validate a correct password', function(done) {
       db.user.findOne().then(function(user) {
         if (user.validPassword('password')) {
+          done();
+        } else {
+          done(user);
+        }
+      }).catch(function(error) {
+        done(error);
+      });
+    });
+
+    it('should invalidate an incorrect password', function(done) {
+      db.user.findOne().then(function(user) {
+        if (!user.validPassword('nope')) {
           done();
         } else {
           done(user);
