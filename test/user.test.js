@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 var db = require('../models');
 
 before(function(done) {
-  db.sequelize.sync({force:true}).then(function() {
+  db.sequelize.sync({ force: true }).then(function() {
     done();
   });
 });
@@ -84,7 +84,7 @@ describe('User instance methods', function() {
         }
       }).catch(function(error) {
         done(error);
-      })
+      });
     });
   });
 
@@ -98,7 +98,7 @@ describe('User instance methods', function() {
         }
       }).catch(function(error) {
         done(error);
-      })
+      });
     });
   });
 });

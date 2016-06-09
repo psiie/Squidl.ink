@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: {
           msg: 'Invalid email address'
         }
-      },
+      }
     },
     name: {
       type: DataTypes.STRING,
@@ -32,10 +32,10 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     hooks: {
-      beforeCreate: function(user, options, cb) {
-        var hash = bcrypt.hashSync(user.password, 10);
-        user.password = hash;
-        cb(null, user);
+      beforeCreate: function(createdUser, options, cb) {
+        var hash = bcrypt.hashSync(createdUser.password, 10);
+        createdUser.password = hash;
+        cb(null, createdUser);
       }
     },
     classMethods: {
@@ -48,9 +48,9 @@ module.exports = function(sequelize, DataTypes) {
         return bcrypt.compareSync(password, this.password);
       },
       toJSON: function() {
-        var user = this.get();
-        delete user.password;
-        return user;
+        var jsonUser = this.get();
+        delete jsonUser.password;
+        return jsonUser;
       }
     }
   });
