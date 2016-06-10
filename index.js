@@ -13,8 +13,8 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.get('/protected', function(req, res) {
-  res.render('protected');
+app.get('/profile', function(req, res) {
+  res.render('profile');
 });
 
 app.use('/auth', require('./controllers/auth'));
