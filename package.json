@@ -1,5 +1,5 @@
 {
-  "name": "express-authentication",
+  "name": "p2p-fileshare",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
