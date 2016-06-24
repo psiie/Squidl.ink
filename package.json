@@ -24,12 +24,17 @@
   "dependencies": {
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.1",
+    "connect-flash": "^0.1.1",
     "ejs": "^2.4.2",
     "express": "^4.13.4",
     "express-ejs-layouts": "^2.1.0",
+    "express-session": "^1.13.0",
     "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "pg": "^5.0.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^3.23.3"
+    "sequelize": "^3.23.3",
+    "sequelize-cli": "^2.4.0"
   }
 }

@@ -1,6 +1,13 @@
 var expect = require('chai').expect;
 var request = require('supertest');
 var app = require('../index');
+var db = require('../models');
+
+before(function(done) {
+  db.sequelize.sync({ force: true }).then(function() {
+    done();
+  });
+});
 
 describe('Auth Controller', function() {
   describe('GET /auth/signup', function() {
@@ -14,7 +21,7 @@ describe('Auth Controller', function() {
       request(app).post('/auth/signup')
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .send({
-        email: 'new@new.com',
+        email: 'new@new.co',
         name: 'Brian',
         password: 'password'
       })

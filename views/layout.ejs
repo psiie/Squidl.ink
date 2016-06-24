@@ -10,6 +10,8 @@
   </head>
   <body>
     <div class="container">
+      <%- JSON.stringify(currentUser) %>
+      <% include partials/alerts %>
       <h1>Authentication</h1>
       <%- body %>
     </div>
