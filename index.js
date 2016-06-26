@@ -11,6 +11,7 @@ app.set('view engine', 'ejs');
 
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('public'));
 app.use(ejsLayouts);
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -36,6 +37,6 @@ app.get('/profile', isLoggedIn, function(req, res) {
 
 app.use('/auth', require('./controllers/auth'));
 
-var server = app.listen(process.env.PORT || 3000);
+var server = app.listen(process.env.PORT || 3005);
 
 module.exports = server;
