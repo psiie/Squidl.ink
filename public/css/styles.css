@@ -1,30 +1,32 @@
+/*---------------------------*/
+/* Global (setting defaults) */
+/*---------------------------*/
+
 body {
   background-color: #ddd;
   font-family: 'Sahitya', serif;
 }
 
-.icons {
-  min-width: 285px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+p {
+  color: black;
 }
 
-.fa-4x {
-  margin-bottom: 30px;
+li {
+  padding-right: 10px;
+}
+
+/*---------------------------*/
+/* Customs (highly reusable) */
+/*---------------------------*/
+
+/*Not high enough specificity to work by itself. Try to rid of !important*/
+.dragging {
+  background-color: #244e82 !important;
+  border-color: #ddd !important;
+  color: #eee !important;
 }
 
 .margin-center {
-  margin: 0 auto;
-}
-
-.top-neg-space {
-  margin-top: -10px;
-}
-
-.max-width {
-  max-width: 450px;
-/*   border: 1px solid purple; */
   margin: 0 auto;
 }
 
@@ -32,6 +34,24 @@ body {
   font-family: 'Oswald', sans-serif;
 }
 
+.fa-4x {
+  margin-bottom: 30px;
+}
+
+.top-neg-space {
+  margin-top: -10px;
+}
+
+.max-width {
+/*
+  border: 1px solid purple; */
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+/*---------------------------*/
+/* Specifics (iffy reusability)*/
+/*---------------------------*/
 .top-bar {
   background-color: #333;
   color: #ddd;
@@ -43,38 +63,25 @@ body {
   background-color: #242424;
 }
 
-/* This shouldnt be needed. Its supposed to inherit */
-.medium-horizontal.menu {
-  background-color: inherit;
-}
-
-li {
-  padding-right: 10px;
-}
-
-.columns {
-/*   background-color: grey; */
-/*   border: 1px solid red; */
-}
-
 .container {
 /*   border: 1px solid blue; */
   margin-top: 30px;
 }
 
-p {
-  color: black;
+/* This shouldnt be needed. Its supposed to inherit */
+/* This is a bugfix. */
+.medium-horizontal.menu {
+  background-color: inherit;
 }
 
 .box {
-/*   background: url('http://imgs.abduzeedo.com/files/articles/logo-design-squids-octopuses/a3fc538f91278c6c2b3fdc20c1a3efd6.png');
+/*
+  background: url('http://imgs.abduzeedo.com/files/articles/logo-design-squids-octopuses/a3fc538f91278c6c2b3fdc20c1a3efd6.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%; */
   width: 95vw;
   height: 88vh;
-  /*min-height: 700px;*/
-/*   height: 600px; */
   border: 5px dashed #aaa;
   border-radius: 50px;
   margin: 0 auto;
@@ -83,12 +90,20 @@ p {
   align-items: center;
   background-color: #eee;
   color: #244e82;
-
-
 }
 
-.dragging {
-  background-color: #244e82;
-  border-color: #ddd;
-  color: #eee;
+.icons {
+  min-width: 285px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/*---------------------------*/
+/* Debugging */
+/*---------------------------*/
+
+.columns {
+/*   background-color: grey; */
+/*   border: 1px solid red; */
 }
