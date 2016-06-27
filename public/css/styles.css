@@ -89,9 +89,19 @@ video {
   font-family: 'Arial', serif;
 }
 
+.top-bar li a {
+  display: inline;
+}
+
 .nav-decoration {
   height: 4px;
   background-color: #242424;
+}
+
+.progress-bar {
+  width: 0px;
+  height: inherit;
+  background-color: #4cbb4c;
 }
 
 /* Main */

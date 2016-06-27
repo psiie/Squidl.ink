@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <!-- Link ALL fonts. not just svg. For max compatibility -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.svg">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts/fontawesome-webfont.svg"> -->
 
     <!-- My Styles -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Sahitya' rel='stylesheet' type='text/css'>
 
@@ -21,18 +21,19 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/webtorrent/0.95.2/webtorrent.min.js"></script>
-    <script src="js/global.js"></script>
-    <script src="js/upload.js"></script>
-    <script src="js/page-global.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="../js/upload.js"></script>
+    <script src="../js/page-global.js"></script>
   </head>
   <body>
-
     <% include partials/navbar %>
     <div class="container">
+
       <%- JSON.stringify(currentUser) %>
       <% include partials/alerts %>
       <%- body %>
-    </div>
+      <div class="box after-box-media hide"></div>
 
+    </div>
   </body>
 </html>
