@@ -29,6 +29,7 @@
     "express": "^4.13.4",
     "express-ejs-layouts": "^2.1.0",
     "express-session": "^1.13.0",
+    "hashids": "^1.0.2",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",

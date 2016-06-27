@@ -27,15 +27,17 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/', function(req, res) {
-  res.render('index');
-});
 
 app.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile');
 });
 
+// app.get('/', function(req, res) {
+//   res.render('index');
+// });
+
 app.use('/auth', require('./controllers/auth'));
+app.use('/', require('./controllers/root'));
 
 var server = app.listen(process.env.PORT || 3005);
 

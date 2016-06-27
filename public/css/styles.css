@@ -5,6 +5,8 @@
 body {
   background-color: #ddd;
   font-family: 'Sahitya', serif;
+  /*photoshop the image darker*/
+  /*background: url('../img/cream_dust.png');*/
 }
 
 p {
@@ -13,6 +15,16 @@ p {
 
 li {
   padding-right: 10px;
+}
+
+.inline-list, .inline-list li {
+  list-style: none;
+  display: inline;
+}
+
+video {
+  height: 100%;
+  width: 100%;
 }
 
 /*---------------------------*/
@@ -24,6 +36,15 @@ li {
   background-color: #244e82 !important;
   border-color: #ddd !important;
   color: #eee !important;
+}
+
+.box {
+  width: 95vw;
+  height: 88vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .margin-center {
@@ -45,13 +66,23 @@ li {
 .max-width {
 /*
   border: 1px solid purple; */
-  max-width: 450px;
+  max-width: 460px;
   margin: 0 auto;
+}
+
+.icons {
+  min-width: 285px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 /*---------------------------*/
 /* Specifics (iffy reusability)*/
 /*---------------------------*/
+
+/* Navbar */
+
 .top-bar {
   background-color: #333;
   color: #ddd;
@@ -63,9 +94,35 @@ li {
   background-color: #242424;
 }
 
+/* Main */
+
 .container {
 /*   border: 1px solid blue; */
   margin-top: 30px;
+}
+
+.before-box {
+/*   background: url('http://imgs.abduzeedo.com/files/articles/logo-design-squids-octopuses/a3fc538f91278c6c2b3fdc20c1a3efd6.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%; */
+  border: 5px dashed #aaa;
+  border-radius: 50px;
+  background-color: #eee;
+  color: #244e82;
+}
+
+.after-box-downloading {
+  background-color: grey;
+}
+
+.after-box-media {
+  background-color: grey;
+  border: 1px solid red;
+}
+
+.after-box-upload {
+  background-color: grey;
 }
 
 /* This shouldnt be needed. Its supposed to inherit */
@@ -74,30 +131,13 @@ li {
   background-color: inherit;
 }
 
-.box {
-/*
-  background: url('http://imgs.abduzeedo.com/files/articles/logo-design-squids-octopuses/a3fc538f91278c6c2b3fdc20c1a3efd6.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100%; */
-  width: 95vw;
-  height: 88vh;
-  border: 5px dashed #aaa;
-  border-radius: 50px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #eee;
-  color: #244e82;
+.dl-bar {
+  width: 400px;
+  height: 10px;
+  background-color: darkgrey;
 }
 
-.icons {
-  min-width: 285px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
+
 
 /*---------------------------*/
 /* Debugging */

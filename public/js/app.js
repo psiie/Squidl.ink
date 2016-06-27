@@ -99,6 +99,16 @@ function onTorrentDownload(torrent) {
 
 // Callback for when torrent is seeding
 function onTorrentSeed(torrent) {
+  var idHash;
+  // Make a post to addOrCreate and return the hash(id) for sharing
+  $.post('/new/' + torrent.infoHash, {}, function(returned) {
+    console.log('got back the post, ', returned);
+    idHash = returned.id;
+    $('.share-link').text(idHash);
+    history.pushState('data', '', '/' + idHash);
+    $('.before-box').addClass('hide');
+  });
+
   console.log('Seeding ' + torrent.name);
   console.log('Hash: ' + torrent.infoHash);
   console.log('peerNum: ' + torrent.numPeers);
@@ -127,7 +137,10 @@ function appendHolder(torrent) {
     // Only run if the extension IS. This will place the video player in
     // but not anything else [as raw text]
     if ( mediaFormats.indexOf(getExtension(file.name)) !== -1 ) {
-      file.appendTo('.box', function(error) {
+      $('.before-box').addClass('hide');
+      $('.after-box-media').removeClass('hide');
+
+      file.appendTo('.after-box-media', function(error) {
         console.log('inside appendTo()');
         // If it is not a video, error == true.
         if (error) {
@@ -140,11 +153,18 @@ function appendHolder(torrent) {
     // Cant get link without it running
     file.getBlobURL(function(error, url) {
       console.log('inside getBlobURL');
+
+      // Check if video is showing before showing download box
+      // if ( $('.after-box-media').hasClass('hide') ) {
+      //   $('.before-box').addClass('hide');
+      //   $('.after-box-downloading').removeClass('hide');
+      // }
+
       if (error) {
         console.log('error in getBlobURL. ', error);
       }
       console.log('download link: ' + file.name, url)
-      downloadLink(url); // set the button and makes it not invisible
+      downloadLink(url, torrent.name); // set the button and makes it not invisible
       var link = document.location.hostname + document.location.pathname + '/#' + torrent.infoHash;
       link = link.replace(/\/+/g, '/');
 
@@ -153,3 +173,11 @@ function appendHolder(torrent) {
 }
 
 // getHash()
+
+
+// <div class="container">
+//       <%- JSON.stringify(currentUser) %>
+//       <% include partials/alerts %>
+//       <h1>Authentication</h1>
+//       <%- body %>
+//     </div>

@@ -1,4 +1,6 @@
-var mediaFormats = ['mp4','m4v','m4a','mp3'];
+var isUploading = false;
+var mediaFormats = ['mp4','webm','m4v','m4a',
+  'mp3','wav','jpg','gif','png','pdf','txt'];
 var TRACKERS = [
   'ws://torrent.lunik.xyz:8000',
   'udp://torrent.lunik.xyz:8000',
@@ -50,6 +52,11 @@ $(document).ready(function(){
     e.preventDefault();
     e.stopPropagation();
     this.id = '';
+    isUploading = true;
+    // remove dragging class
+    if ( $('.box').hasClass('dragging') ) {
+      $('.box').removeClass('dragging');
+    };
     var file = e.originalEvent.dataTransfer.files[0];
     console.log(file);
     seed(file);
@@ -62,13 +69,13 @@ $(document).ready(function(){
 function updateStats(progress, upload, download, peers, uploaded, downloaded, ratio, timeRemaining) {
   $('.time-remaining').text(Math.floor(timeRemaining/1000) + ' seconds remaining');
   $('.percent').text(Math.floor(progress*100) + '% Done');
-  $('.upload').text(formatSpeed(upload) + ' UL Speed');
-  $('.download').text(formatSpeed(download) + ' DL Speed');
-  $('.peers').text(peers + ' Peers');
+  $('.upload').text(formatSpeed(upload) );
+  $('.download').text(formatSpeed(download) );
+  $('.peers').text(peers + ' peers');
   $('.uploaded').text(formatData(uploaded) + ' Uploaded');
   $('.downloaded').text(formatData(downloaded) + ' Downloaded');
   $('.filesize').text( formatData(Math.floor((1/progress)*downloaded)) + ' Total Size' );
-  $('.ratio').text( (ratio < 1000 ? ratio.toFixed(2) : '∞') + ' share ratio');
+  $('.ratio').text( (ratio < 1000 ? ratio.toFixed(2) : '∞') + ' ratio');
 }
 
 // see https://github.com/Lunik/Instant-Share/blob/master/src/js/app.js
@@ -100,7 +107,8 @@ function getExtension(filename) {
   return filename.split('.')[filename.split('.').length - 1]
 }
 
-function downloadLink(link) {
+function downloadLink(link, fileName) {
   $('.dl-link').attr('href', link);
+  $('.dl-link').attr('download', fileName);
   $('.dl-link').show();
 }

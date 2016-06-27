@@ -5,7 +5,7 @@
  -->
 
 
-<div class="box">
+<div class="box before-box">
   <div class="small-12 columns max-width">
     <div class="row icons top-space">
       <div class="small-3 columns fa fa-file-zip-o fa-4x"></div>
@@ -21,10 +21,59 @@
     <div class="row text-left">
       <h1 class="font-a">INTRODUCING SQUIDL</h1>
       <h3 class="font-a subheader top-neg-space">A Tool For Getting Files from A to B</h3>
-      <p class="text-left">Drag and Drop any file into this page to create a private link that you can share. All this without ever touching the cloud. Because Squidl is powered by Bittorrent, the more shares translates to faster and stronger sharing.<br><br>
+      <p class="text-left">Drag and Drop any file into this page to create a private link that you can share. All this without ever touching the cloud. Since Squidl is powered by Bittorrent, the more shares translates to a stronger and faster Squid.<br><br>
 
         Sign-up for Stats & Admin Control.</p>
     </div>
   </div>
 </div>
 
+<div class="box after-box-downloading hide">
+    <div class="row text-center">
+
+      <div>
+        <i class="fa fa-circle-o-notch fa-spin fa-5x fa-fw" aria-hidden="true"></i>
+      </div>
+      <div>
+        <h3>MyFile.mp4</h3>
+      </div>
+      <div class='dl-bar'></div>
+      <div>
+        <ul class="inline-list">
+          <li>0kb Uploaded</li>
+          <li>0kb Downloaded</li>
+          <li>0kb Filesize</li>
+        </ul>
+      </div>
+
+  </div>
+</div>
+
+<div class="box after-box-uploading">
+  <div class="row text-center">
+    <div class="share-link"></div>
+  </div>
+</div>
+
+<div class="box after-box-media hide"></div>
+
+<!-- Get rid of everything below -->
+
+<div class="row">
+  <div class="stats">
+    <div class="time-remaining">Time Remaining</div>
+    <div class="percent">0% Complete</div>
+    <div class="uploaded">0 bits</div>
+    <div class="downloaded">0 bits</div>
+    <div class="filesize">0 bytes</div>
+
+    <div><a href="" target="_blank" class="dl-link">Download</a></div>
+  </div>
+
+
+  <div>
+      <p>Input Hash of torrent to dl</p>
+      <input class='hash-input' value='eedf3cc0ae3f877b849b1da70356a06f717f83d0' type="text" style='width: 300px;'>
+      <button class="btn-dl">Download Button</button>
+    </div>
+</div>
