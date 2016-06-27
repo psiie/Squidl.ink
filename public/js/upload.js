@@ -45,7 +45,8 @@ function appendHolder(torrent) {
       if (error) { console.log('error in getBlobURL. ', error); }
       // console.log('inside getBlobURL');
       // console.log('download link: ' + file.name, url)
-      downloadLink(url, torrent.name); // set the button and makes it not invisible
+      // downloadLink(url, torrent.name); // set the button and makes it not invisible
+      donePrep(url, torrent.name);
       var link = document.location.hostname + document.location.pathname + '/#' + torrent.infoHash;
       link = link.replace(/\/+/g, '/');
 

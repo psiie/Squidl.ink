@@ -18,13 +18,6 @@ var TRACKERS = [
 // ================================================ //
 // Document Ready
 $(document).ready(function(){
-  $('.dl-link').hide();
-
-  $('.btn-dl').click(function(e) {
-    var hash = $('.hash-input').val();
-    console.log( 'going to download from ' + hash );
-    getHash(hash);
-  });
 
   $('.container').on('dragover', '.box', function(e) {
     e.preventDefault();

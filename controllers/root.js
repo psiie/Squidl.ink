@@ -25,7 +25,7 @@ router.post('/new/:hash', function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-  var hashId = hashIds.decode(req.params.id);
+  var hashId = hashids.decode(req.params.id);
   db.link.find({
     where: { id: hashId }
   }).then(function(data) {

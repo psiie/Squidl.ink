@@ -19,18 +19,18 @@ function mediaInit(file) {
 // ===================================================== //
 
 // turn magnet into hash
-function cleanHash (hash) {
-  var r = new RegExp('.*:')
-  var r2 = new RegExp('&.*')
-  return hash.replace(r, '').replace(r2, '')
-}
+// function cleanHash (hash) {
+//   var r = new RegExp('.*:')
+//   var r2 = new RegExp('&.*')
+//   return hash.replace(r, '').replace(r2, '')
+// }
 
 // Get the hash and start torrent if there is a hash
 // function getHash(hash) {
-function getHash(hash) {
-  hash = cleanHash(hash);
-  download(hash);
-}
+// function getHash(hash) {
+//   hash = cleanHash(hash);
+//   download(hash);
+// }
 
 // Download a torrent
 function download(hash) {
