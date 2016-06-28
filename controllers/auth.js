@@ -32,6 +32,15 @@ router.post('/signup', function(req, res) {
 
 });
 
+router.get('/facebook', passport.authenticate('facebook'));
+
+router.get('/facebook/callback', passport.authenticate('facebook',
+  {failureRedirect: '/login'}),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+
 router.get('/login', function(req, res) {
   res.render('auth/login');
 });

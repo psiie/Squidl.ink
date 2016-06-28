@@ -29,6 +29,12 @@ module.exports = function(sequelize, DataTypes) {
           msg: 'Name must be between 1 and 254 characters'
         }
       }
+    },
+    facebookId: {
+      type: DataTypes.STRING,
+    },
+    facebookToken: {
+      type: DataTypes.TEXT,
     }
   }, {
     classMethods: {
@@ -38,6 +44,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     instanceMethods: {
       validPassword: function(password) {
+        // return password === null ? true : false;
         return bcrypt.compareSync(password, this.password);
       },
       toJSON: function() {
@@ -49,6 +56,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     hooks: {
       beforeCreate: function(createdUser, options, cb) {
+        if (!createdUser.password) cb(null, createdUser);
         var hash = bcrypt.hashSync(createdUser.password, 10);
         createdUser.password = hash;
         cb(null, createdUser);
