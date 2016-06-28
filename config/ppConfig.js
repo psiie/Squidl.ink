@@ -13,6 +13,7 @@ passport.deserializeUser(function(id, cb) {
     }).catch(cb);
 });
 
+// username password field from the form!
 passport.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'

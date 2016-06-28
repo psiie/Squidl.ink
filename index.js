@@ -1,4 +1,5 @@
 var express = require('express');
+var db = require('./models');
 var ejsLayouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -29,7 +30,14 @@ app.use(function(req, res, next) {
 
 
 app.get('/profile', isLoggedIn, function(req, res) {
-  res.render('profile');
+  db.user.find({
+    where: { id: req.user.id }
+  }).then(function(info) {
+    res.render('profile', { name: info.name });
+  }).catch(function(error) {
+    console.log(error);
+    res.send('server error');
+  })
 });
 
 // app.get('/', function(req, res) {
