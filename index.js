@@ -33,7 +33,7 @@ app.get('/profile', isLoggedIn, function(req, res) {
   db.user.find({
     where: { id: req.user.id }
   }).then(function(info) {
-    res.render('profile', { name: info.name });
+    res.render('profile');
   }).catch(function(error) {
     console.log(error);
     res.send('server error');

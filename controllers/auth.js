@@ -32,12 +32,12 @@ router.post('/signup', function(req, res) {
 
 });
 
-router.get('/facebook', passport.authenticate('facebook'));
+router.get('/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
 
 router.get('/facebook/callback', passport.authenticate('facebook',
   {failureRedirect: '/login'}),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/profile');
   });
 
 
@@ -46,7 +46,7 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/profile',
   failureRedirect: '/auth/login'
 }));
 

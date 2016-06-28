@@ -41,7 +41,7 @@ $(document).ready(function(){
     console.log('dragleave');
     return false
   })
-  $('.container').on('drop', '.box', function(e) {
+  $('.container').on('drop', '.before-box', function(e) {
     e.preventDefault();
     e.stopPropagation();
     this.id = '';

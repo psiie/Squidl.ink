@@ -70,6 +70,7 @@ function appendHolder(torrent) {
   torrent.files.forEach(function(file) {
     // If this is playable media and is not uploading
     if (!isUploading) { mediaInit(file); }
+    $('.filename').text(file.name);
 
     // Download link preperation
     file.getBlobURL(function(error, url) {

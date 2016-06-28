@@ -37,24 +37,55 @@ passport.use(new FacebookStrategy({
   profileFields: ['id', 'displayName', 'email']
 }, function(accessToken, refreshToken, profile, cb) {
   console.log('USER PROFILE------: ', profile);
-  db.user.findOrCreate({
-    where: { facebookId: profile.id },
-    defaults: {
-      name: profile.displayName,
-      email: profile.email
+
+  // find email -> if found, modify entry
+  // else findOrCreate by facebook id
+  db.user.find({
+    where: { email: profile.emails[0].value }
+  }).then(function(sqlAcc) {
+    if (sqlAcc && profile.emails[0].value) {
+
+      sqlAcc.name = profile.displayName;
+      sqlAcc.facebookId = profile.id;
+      sqlAcc.facebookToken = accessToken;
+      sqlAcc.save();
+      return cb(null, sqlAcc);
+
+    } else {
+
+
+      db.user.findOrCreate({
+        where: { facebookId: profile.id },
+        defaults: {
+          name: profile.displayName,
+          email: profile.emails[0].value
+        }
+      }).spread(function(user, created) {
+        user.facebookToken = accessToken;
+        user.save();
+        return cb(null, user);
+      }).catch(function(err) {
+        return cb(err, null);
+      })
+
+
     }
-  }).spread(function(user, created) {
-    user.facebookToken = accessToken;
-    user.save();
-    // user.facebookId = 27;
-    console.log("UUUUUUUSSSSSSSEEEEEEERRRRRRR: ", profile.id, profile.displayName);
-    console.log("facebookToken: ", accessToken);
-    return cb(null, user);
-  }).catch(function(err) {
-    return cb(err, null);
   })
+
+
+
+
+
+
+
 }
 
 ))
 
 module.exports = passport;
+
+
+
+    // user.facebookId = 27;
+    // console.log("UUUUUUUSSSSSSSEEEEEEERRRRRRR: ", profile.id, profile.displayName);
+    // console.log("facebookToken: ", accessToken);
