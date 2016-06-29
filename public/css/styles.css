@@ -27,6 +27,10 @@ video {
   width: 100%;
 }
 
+form {
+  width: inherit;
+}
+
 /*---------------------------*/
 /* Customs (highly reusable) */
 /*---------------------------*/
@@ -95,6 +99,14 @@ video {
   flex-wrap: wrap;
 }
 
+.unstyled-link {
+  color: inherit;
+}
+
+.p-excerpt {
+  max-width: 560px;
+}
+
 /*---------------------------*/
 /* Specifics (iffy reusability)*/
 /*---------------------------*/
@@ -141,7 +153,7 @@ video {
 }
 
 .after-box-downloading {
-  background-color: grey;
+  /*background-color: grey;*/
 }
 
 .after-box-media {
@@ -149,8 +161,18 @@ video {
   border: 1px solid red;
 }
 
-.after-box-upload {
-  background-color: grey;
+.after-box-uploading {
+  border: 5px solid #4982c7;
+  border-radius: 50px;
+  background-color: #eee;
+}
+
+.box-login {
+  width : 250px;
+}
+
+.btn-primary {
+  width: 110px;
 }
 
 /* This shouldnt be needed. Its supposed to inherit */
@@ -159,13 +181,18 @@ video {
   background-color: inherit;
 }
 
-.dl-bar {
-  width: 400px;
-  height: 3px;
-  background-color: darkgrey;
+.share-link {
+  display: inline-block;
+  width: auto;
 }
 
+.share-link:hover {
+  cursor: pointer;
+}
 
+.btn-copy {
+  margin-top: 12px;
+}
 
 /*---------------------------*/
 /* Foundation Override */

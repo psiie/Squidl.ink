@@ -8,9 +8,12 @@ $(document).ready(function(){
     $.post('/stats/1/1/1', function(){
       console.log('success');
     })
-  })
+  });
+
   // Animations & Sizing
   // =================================== //
+
+  // Main Page
   $('.hover').slideUp('fast'); // Start of frame [once] animation
 
   var isSliding = false;
@@ -47,6 +50,8 @@ $(document).ready(function(){
       });
     }
   })
+
+
 
   // Drag and drop events
   // =================================== //

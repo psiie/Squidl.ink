@@ -59,7 +59,9 @@ function initTorrent(torrent) {
   });
   torrent.on('upload', function() {
     console.log('upload: ', torrent.name);
-    updateStats(torrent.progress, 0, 0,
+    updateStats(torrent.progress,
+      torrent.uploadSpeed,
+      torrent.downloadSpeed,
       torrent.numPeers,
       torrent.uploaded,
       torrent.downloaded,
@@ -94,37 +96,27 @@ function destroy(torrent) {
 // Append the torrent to the holder in HTML
 // Mostly for video/audio at this point
 function appendHolder(torrent) {
-
   torrent.files.forEach(function(file) {
+
     // If this is playable media and is not uploading
-    if (!isUploading) { mediaInit(file); }
+    if (!isUploading) { mediaInit(file); } // inside download.js
     $('.filename').text(file.name);
-    console.log('link locaiton ---------------: ');
+
     // Download link preperation
     file.getBlobURL(function(error, url) {
-      // This seems to only run if it is not playable media :S. Cant get link without it running
       if (error) { console.log('error in getBlobURL. ', error); }
-      donePrep(url, torrent.name);
-      // console.log('inside getBlobURL');
-      // console.log('download link: ' + file.name, url)
-      // downloadLink(url, torrent.name); // set the button and makes it not invisible
-      // var link = document.location.hostname + document.location.pathname + '/#' + torrent.infoHash;
-      // link = link.replace(/\/+/g, '/');
+      $('.loadAnim').addClass('hide');
+      $('.filename').wrap('<h3><a href="" class="ready-link"></a></h3>')
+      $('.ready-link').attr('href', url );
+      $('.ready-link').attr('download', torrent.name);;
+      $('.ready-link').text(torrent.name);
+      $('.ready-link').removeClass('hide');
+
 
     });
   });
 }
 
-
-function donePrep(url, name) {
-  $('.loadAnim').addClass('hide');
-
-  $('.ready-link').attr('href', url );
-  $('.ready-link').attr('download', name);;
-  $('.ready-link').text(name);
-
-  $('.ready-link').removeClass('hide');
-}
 
 // getHash()
 

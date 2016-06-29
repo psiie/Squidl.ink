@@ -2,19 +2,22 @@
     <div class="row text-center">
 
       <div>
-        <i class="loadAnim fa fa-circle-o-notch fa-spin fa-5x fa-fw hide" aria-hidden="true"></i>
-        <button class="btn-dl" value="<%= magnet %>">Start</button>
-        <a href="" class="ready-link hide">Download Ready</a>
-      </div>
-      <div>
         <h3 class="filename"></h3>
       </div>
-      <div class='dl-bar'></div>
+      <div>
+        <i class="loadAnim fa fa-circle-o-notch fa-spin fa-5x fa-fw hide" aria-hidden="true"></i>
+        <button class="button secondary btn-stream" value="<%= magnet %>">Stream</button>
+        <button class="button btn-dl" value="<%= magnet %>">Download</button>
+        <!-- <a href="" class="ready-link hide">Download Ready</a> -->
+        <div class="p-excerpt">
+          <p>Squidl.ink only stores the torrent hash and therefore the filename, size and whether or not the file is stream capable is only known by the client after initiating the stream. <br><i>–Squidl.ink Team</i> </p>
+        </div>
+      </div>
       <div>
         <ul class="inline-list">
-          <li class="uploaded">0kb Uploaded</li>
-          <li class="downloaded">0kb Downloaded</li>
-          <li class="filesize">0kb Filesize</li>
+          <li class="uploaded hide">0kb Uploaded</li>
+          <li class="downloaded hide">0kb Downloaded</li>
+          <li class="filesize hide">0kb Filesize</li>
 
         </ul>
       </div>

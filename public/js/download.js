@@ -35,22 +35,3 @@ function onTorrentDownload(torrent) {
   console.log('Downloading ' + torrent.name);
   destroy(torrent);
 }
-
-
-
-
-
-
-// turn magnet into hash
-// function cleanHash (hash) {
-//   var r = new RegExp('.*:')
-//   var r2 = new RegExp('&.*')
-//   return hash.replace(r, '').replace(r2, '')
-// }
-
-// Get the hash and start torrent if there is a hash
-// function getHash(hash) {
-// function getHash(hash) {
-//   hash = cleanHash(hash);
-//   download(hash);
-// }

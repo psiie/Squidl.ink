@@ -16,7 +16,8 @@ function onTorrentSeed(torrent) {
   $.post('/new/' + torrent.infoHash, {}, function(returned) {
     console.log('got back the post, ', returned);
     idHash = returned.id;
-    $('.share-link').text(idHash);
+    // $('.share-link').text(idHash);
+    $('.share-link').attr('value', 'http://localhost:3005/' + idHash)
     history.pushState('data', '', '/' + idHash);
     $('.before-box').addClass('hide');
     if (isUploading) { $('.after-box-uploading').removeClass('hide'); }
