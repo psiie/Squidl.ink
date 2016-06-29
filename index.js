@@ -44,6 +44,7 @@ app.get('/profile', isLoggedIn, function(req, res) {
 //   res.render('index');
 // });
 
+app.use('/stats', isLoggedIn, require('./controllers/stats'));
 app.use('/auth', require('./controllers/auth'));
 app.use('/', require('./controllers/root'));
 

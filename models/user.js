@@ -31,10 +31,19 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     facebookId: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     facebookToken: {
-      type: DataTypes.TEXT,
+      type: DataTypes.TEXT
+    },
+    uploaded: {
+      type: DataTypes.TEXT
+    },
+    downloaded: {
+      type: DataTypes.TEXT
+    },
+    created: {
+      type: DataTypes.INTEGER
     }
   }, {
     classMethods: {

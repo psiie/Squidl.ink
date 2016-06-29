@@ -8,14 +8,28 @@ router.get('/', function(req, res) {
   res.render('index');
 });
 
+// router.post('/remove/:hash', function(req, res) {
+
+//   // lock down so only the owner or anon can destroy
+//   db.link.find({
+//     where: { magnet: req.params.hash }
+//   }).then(function(entry) {
+//     entry.destroy();
+//   }).catch(function(err) {
+//     console.log('error destroying entry', err);
+//   })
+
+// })
+
 router.post('/new/:hash', function(req, res) {
   db.link.findOrCreate({
     where: { magnet: req.params.hash },
     defaults: {
-      owner: null,
+      owner: req.user ? req.user.id : null,
       uniqueClick: 0
     }
   }).spread(function(data, created) {
+
     var idHash = hashids.encode(data.id);
     res.send({msg:'success', id: idHash });
   }).catch(function(error) {
@@ -29,7 +43,9 @@ router.get('/:id', function(req, res) {
   db.link.find({
     where: { id: hashId }
   }).then(function(data) {
-    console.log('found magnet link: ', data.magnet);
+    data.uniqueClick += 1;
+    data.save();
+
     res.render('download', {magnet: data.magnet});
   }).catch(function(error) {
     console.log('error occurred in /:id ', error.message);

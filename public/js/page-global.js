@@ -1,25 +1,56 @@
-var isUploading = false;
-var mediaFormats = ['mp4','webm','m4v','m4a',
-  'mp3','wav','jpg','gif','png','pdf','txt'];
-var TRACKERS = [
-  'ws://torrent.lunik.xyz:8000',
-  'udp://torrent.lunik.xyz:8000',
-  'http://torrent.lunik.xyz:8000/announce',
-  'wss://tracker.webtorrent.io',
-  'udp://tracker.internetwarriors.net:1337',
-  'udp://tracker.leechers-paradise.org:6969',
-  'udp://tracker.coppersurfer.tk:6969',
-  'udp://exodus.desync.com:6969',
-  'wss://tracker.btorrent.xyz',
-  'wss://tracker.openwebtorrent.com',
-  'wss://tracker.fastcast.nz'
-]
-
-// ================================================ //
 // Document Ready
 $(document).ready(function(){
+  $(document).foundation(); // Foundation init according to documentation
 
-  $('.container').on('dragover', '.box', function(e) {
+  // Test button. Delete upon release
+  $('.btn-test').click(function(){
+    console.log('clicked!');
+    $.post('/stats/1/1/1', function(){
+      console.log('success');
+    })
+  })
+  // Animations & Sizing
+  // =================================== //
+  $('.hover').slideUp('fast'); // Start of frame [once] animation
+
+  var isSliding = false;
+  var slideDisabled = false;
+  $(window).resize(function() {
+    if ( $(window).width() < 640 && slideDisabled === false ) {
+      slideDisabled = true;
+      console.log(slideDisabled);
+      $('.hover').slideDown('slow');
+      $('.hover-inverse').slideUp('slow');
+
+    } else if ( $(window).width() >= 640 && slideDisabled === true ) {
+      slideDisabled = false;
+      $('.hover').slideUp('slow');
+      $('.hover-inverse').slideDown('slow');
+    }
+  });
+
+  $('.hover-parent').on('mouseenter', function() {
+    if (!isSliding && slideDisabled === false) {
+      isSliding = true;
+      $('.hover').slideDown('slow');
+      $('.hover-inverse').slideUp('slow', function() {
+        isSliding = false;
+      });
+    }
+  })
+  $('.hover-parent').on('mouseleave', function() {
+    if (!isSliding && slideDisabled === false) {
+      isSliding = true;
+      $('.hover').slideUp('slow');
+      $('.hover-inverse').slideDown('slow', function() {
+        isSliding = false;
+      });
+    }
+  })
+
+  // Drag and drop events
+  // =================================== //
+  $('.container').on('dragover', '.before-box', function(e) {
     e.preventDefault();
     e.stopPropagation();
     this.id = 'hover';
@@ -30,7 +61,7 @@ $(document).ready(function(){
     console.log('dragover');
     return false
   })
-  $('.container').on('dragleave', '.box', function(e) {
+  $('.container').on('dragleave', '.before-box', function(e) {
     e.preventDefault();
     e.stopPropagation();
     this.id = '';
@@ -106,3 +137,5 @@ function downloadLink(link, fileName) {
   $('.dl-link').attr('download', fileName);
   $('.dl-link').show();
 }
+
+

@@ -41,11 +41,29 @@ video {
 .box {
   width: 95vw;
   height: 88vh;
+  min-height: 400px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+@media (max-height: 700px) {
+  .box {
+    height: 70vh;
+  }
+}
+
+@media (max-width: 640px) {
+  .box {
+    width: 85vw;
+    height: 60vh;
+    min-height: 300px;
+    padding: 0 20px;
+  }
+}
+
+
 
 .margin-center {
   margin: 0 auto;
@@ -147,6 +165,26 @@ video {
   background-color: darkgrey;
 }
 
+
+
+/*---------------------------*/
+/* Foundation Override */
+/*---------------------------*/
+
+.menu.vertical>li {
+  display: inline;
+}
+
+.top-bar .top-bar-left, .top-bar .top-bar-right {
+  width: auto;
+}
+
+@media (max-width: 500px) {
+  .menu.vertical>li {
+    display: block;
+  }
+
+}
 
 
 /*---------------------------*/
