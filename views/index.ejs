@@ -28,8 +28,8 @@
       <p>Share the link below and keep this window open. The file being shared only exists if at least 1 persons has 100% of the file. Members are able to delete links at will.</p>
     </div>
     <div>
-      <input class="share-link" type="text" value="http://localhost/4e" disabled>
-      <button class="button btn-copy">Copy</button>
+      <input class="share-link" id="sharelink" type="text" value="http://placeholder" readonly>
+      <button class="button btn-copy" data-clipboard-action="copy" data-clipboard-target="#sharelink">Copy</button>
     </div>
 
     <div>
@@ -37,8 +37,11 @@
         <li class="uploaded">0kb Uploaded</li>
         <li class="downloaded">0kb Downloaded</li>
         <li class="filesize">0kb Filesize</li>
-
       </ul>
+    </div>
+
+    <div>
+      <button class="button secondary btn-watch-media">Watch Media</button>
     </div>
 
   </div>

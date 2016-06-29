@@ -1,6 +1,14 @@
 // Document Ready
 $(document).ready(function(){
   $(document).foundation(); // Foundation init according to documentation
+  var clipboard = new Clipboard('.btn-copy'); // Sets up copy button
+
+  // Copy to clipboard
+  $('.btn-copy').click(function() {
+    if ( !$('.btn-copy').hasClass('success') ) {
+      $('.btn-copy').addClass('success');
+    }
+  })
 
   // Test button. Delete upon release
   $('.btn-test').click(function(){
@@ -9,6 +17,12 @@ $(document).ready(function(){
       console.log('success');
     })
   });
+
+
+  $('.btn-watch-media').click(function() {
+    $('.after-box-media').removeClass('hide');
+  });
+
 
   // Animations & Sizing
   // =================================== //
