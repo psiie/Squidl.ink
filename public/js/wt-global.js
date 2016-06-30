@@ -35,6 +35,7 @@ function initTorrent(torrent) {
     appendHolder(torrent); // this file, below
   });
   torrent.on('download', function(chunkSize) {
+    statPrep();
     updateStats(torrent.progress,
       torrent.uploadSpeed,
       torrent.downloadSpeed,
@@ -50,6 +51,7 @@ function initTorrent(torrent) {
   torrent.on('done', function() {
     console.log('torrent complete');
     console.log(torrent);
+    statPrep();
     updateStats(torrent.progress, 0, 0,
       torrent.numPeers,
       torrent.uploaded,
@@ -59,6 +61,7 @@ function initTorrent(torrent) {
   });
   torrent.on('upload', function() {
     console.log('upload: ', torrent.name);
+    statPrep();
     updateStats(torrent.progress,
       torrent.uploadSpeed,
       torrent.downloadSpeed,
@@ -72,6 +75,20 @@ function initTorrent(torrent) {
     console.log('noPeers: ', torrent.name);
     console.log('seeding');
   });
+
+
+  // =============== Stat update function =================== //
+  // Function for resetting the 'PUT' timer as well as calulating how much to
+  // then send in the put command.
+  statPrep = function() {
+    // Update vars for submitting stats
+    secondsTillPut = 10; // Reset counter to give ample time to reduce spamming
+    uploaded += torrent.uploaded - uploadedDiff;
+    uploadedDiff = torrent.uploaded;
+    downloaded += torrent.downloaded - downloadedDiff; // Calculate the diff from last update
+    downloadedDiff = torrent.downloaded;
+  }
+
 }
 
 // Graceful torrent destruction on page close

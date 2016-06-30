@@ -37,10 +37,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT
     },
     uploaded: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "0"
     },
     downloaded: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: "0"
     },
     created: {
       type: DataTypes.INTEGER

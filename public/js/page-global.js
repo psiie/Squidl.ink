@@ -1,3 +1,26 @@
+// Stats variable counters (resets every PUT into the server)
+var uploaded = 0;
+var downloaded = 0;
+var uploadedDiff = 0;
+var downloadedDiff = 0;
+var secondsTillPut = -1;
+var timerPUT = setInterval(function() {
+  // eventually manage timer to only run when needed
+  // We hold the timer with -1 so the putStat func doesnt run when we arnt using it
+  if (secondsTillPut > 0) {
+    secondsTillPut -= 1;
+  }
+  if (secondsTillPut === 0) {
+    console.log('sent a put of: ', uploaded, downloaded, 0);
+    putStat(uploaded, downloaded, 0);
+    uploaded = 0;
+    downloaded = 0;
+    secondsTillPut = -1;
+  }
+}, 1000);
+
+
+
 // Document Ready
 $(document).ready(function(){
   $(document).foundation(); // Foundation init according to documentation
@@ -13,9 +36,7 @@ $(document).ready(function(){
   // Test button. Delete upon release
   $('.btn-test').click(function(){
     console.log('clicked!');
-    $.post('/stats/1/1/1', function(){
-      console.log('success');
-    })
+    putStat(10,10,1);
   });
 
   $('.btn-watch-media').click(function() {
@@ -34,7 +55,7 @@ $(document).ready(function(){
   $(window).resize(function() {
     if ( $(window).width() < 640 && slideDisabled === false ) {
       slideDisabled = true;
-      console.log(slideDisabled);
+      // console.log(slideDisabled);
       $('.hover').slideDown('slow');
       $('.hover-inverse').slideUp('slow');
 
@@ -76,7 +97,7 @@ $(document).ready(function(){
     if ( !$('.box').hasClass('dragging') ) {
       $('.box').addClass('dragging');
     };
-    console.log('dragover');
+    // console.log('dragover');
     return false
   })
   $('.container').on('dragleave', '.before-box', function(e) {
@@ -87,7 +108,7 @@ $(document).ready(function(){
     if ( $('.box').hasClass('dragging') ) {
       $('.box').removeClass('dragging');
     };
-    console.log('dragleave');
+    // console.log('dragleave');
     return false
   })
   $('.container').on('drop', '.before-box', function(e) {
@@ -100,7 +121,10 @@ $(document).ready(function(){
       $('.box').removeClass('dragging');
     };
     var file = e.originalEvent.dataTransfer.files[0];
-    console.log(file);
+    // console.log(file);
+
+    // Add check to only run this if logged in
+    putStat(0,0,1); // Update the user profile for uploading a new file
     seed(file);
   })
 });
@@ -156,4 +180,16 @@ function downloadLink(link, fileName) {
   $('.dl-link').show();
 }
 
+// Ajax stats
+// =================================== //
 
+function putStat(dl, ul, isNew) {
+  // All three parameters are integers even though new is a boolean conceptually
+  isNew > 1 ? isNew = 1 : false; // Protection for over-adding
+  $.ajax({
+    url: '/stats/' + dl + '/' + ul + '/' + isNew,
+    type: 'PUT',
+    content: false,
+    success: function(){ console.log('sent stats update successfully');}
+  });
+}
