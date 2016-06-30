@@ -18,7 +18,6 @@ $(document).ready(function(){
     })
   });
 
-
   $('.btn-watch-media').click(function() {
     $('.after-box-media').removeClass('hide');
   });

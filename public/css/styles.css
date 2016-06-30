@@ -31,6 +31,22 @@ form {
   width: inherit;
 }
 
+.alert {
+  color: white;
+  margin: 0 40px;
+  padding: 5px 0;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.alert-danger {
+  background-color: #ff87c4;
+}
+
+.alert-success {
+  background-color: #2199e8;
+}
+
 /*---------------------------*/
 /* Customs (highly reusable) */
 /*---------------------------*/
@@ -107,6 +123,14 @@ form {
   max-width: 560px;
 }
 
+.btn-100p {
+  width: 100%;
+}
+
+.btn-50p {
+  width: 49%;
+}
+
 /*---------------------------*/
 /* Specifics (iffy reusability)*/
 /*---------------------------*/
@@ -173,10 +197,6 @@ form {
   width : 250px;
 }
 
-.btn-primary {
-  width: 110px;
-}
-
 /* This shouldnt be needed. Its supposed to inherit */
 /* This is a bugfix. */
 .medium-horizontal.menu {
@@ -213,6 +233,10 @@ form {
     display: block;
   }
 
+}
+
+.btn-signup {
+  background-color: #8a8a8a;
 }
 
 

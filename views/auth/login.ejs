@@ -1,6 +1,11 @@
 <div class="box box-login">
   <form action="/auth/login" method="POST">
 
+
+    <a href="/auth/facebook" class="button info btn-100p">
+      <i class="fa fa-facebook-f fa-lg"></i> Facebook Login
+    </a>
+
     <div class="form-group">
       <!-- <label for="authEmail">Email</label> -->
       <input id="authEmail" class="form-control" type="email" placeholder="email" name="email">
@@ -12,10 +17,8 @@
     </div>
 
     <div class="form-group">
-      <a href="/auth/facebook" class="button info">
-        <i class="fa fa-facebook-f fa-lg"></i> Facebook Login
-      </a>
-      <input class="button secondary btn-primary" type="submit">
+      <a class="button secondary btn-50p" href="/auth/signup">Signup</a>
+      <input class="button secondary btn-50p" type="submit">
     </div>
 
   </form>
