@@ -121,7 +121,7 @@ function appendHolder(torrent) {
       // but not anything else [as raw text]
       if ( mediaFormats.indexOf(getExtension(file.name)) !== -1 ) {
 
-        $('.before-box').addClass('hide');
+        // $('.before-box').addClass('hide');
         $('.after-box-downloading').addClass('hide');
         $('.after-box-media').removeClass('hide');
 

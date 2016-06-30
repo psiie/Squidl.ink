@@ -6,7 +6,7 @@ function seed(file) {
   var torrent = client.seed(file, {
     announce: TRACKERS
   }, onTorrentSeed);
-  initTorrent(torrent);
+  initTorrent(torrent); // wt-global.js
 }
 
 // Callback for when torrent is seeding
@@ -20,7 +20,10 @@ function onTorrentSeed(torrent) {
     $('.share-link').attr('value', 'http://localhost:3005/' + idHash)
     history.pushState('data', '', '/' + idHash);
     $('.before-box').addClass('hide');
-    if (isUploading) { $('.after-box-uploading').removeClass('hide'); }
+    if (isUploading) {
+      $('.after-box-uploading').removeClass('hide');
+      $('.index-spinner').addClass('hide');
+    }
   });
 
   console.log('Seeding ' + torrent.name);

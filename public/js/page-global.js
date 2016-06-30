@@ -85,8 +85,6 @@ $(document).ready(function(){
     }
   })
 
-
-
   // Drag and drop events
   // =================================== //
   $('.container').on('dragover', '.before-box', function(e) {
@@ -114,6 +112,11 @@ $(document).ready(function(){
   $('.container').on('drop', '.before-box', function(e) {
     e.preventDefault();
     e.stopPropagation();
+
+    $('.small-12').addClass('hide');
+    $('.before-box').addClass('hide');
+    $('.index-spinner').removeClass('hide');
+
     this.id = '';
     isUploading = true;
     // remove dragging class
@@ -121,11 +124,10 @@ $(document).ready(function(){
       $('.box').removeClass('dragging');
     };
     var file = e.originalEvent.dataTransfer.files[0];
-    // console.log(file);
 
     // Add check to only run this if logged in
     putStat(0,0,1); // Update the user profile for uploading a new file
-    seed(file);
+    seed(file); // wt-upload.js
   })
 });
 
