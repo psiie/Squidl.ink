@@ -33,12 +33,6 @@ $(document).ready(function(){
     }
   })
 
-  // Test button. Delete upon release
-  $('.btn-test').click(function(){
-    console.log('clicked!');
-    putStat(10,10,1);
-  });
-
   $('.btn-watch-media').click(function() {
     $('.after-box-media').removeClass('hide');
   });

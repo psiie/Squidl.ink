@@ -2,9 +2,10 @@
   <div class="small-12 columns max-width text-center stats-box">
     <div class="row">
       <h3><%= currentUser.name %>'s Stats</h3>
+      <small><a href="/auth/logout">Logout</a></small>
     </div>
 
-    <div class="row">
+    <div class="row extra-space">
       <div>Uploaded: <i class="blue"><%= (currentUser.uploaded/1014/1024).toFixed(2) %>MB</i></div>
       <div>Downloaded: <i class="blue"><%= (currentUser.downloaded/1024/1024).toFixed(2) %>MB</i></div>
       <div>

@@ -7,6 +7,11 @@ router.get('/signup', function(req, res) {
   res.render('auth/signup');
 });
 
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+})
+
 router.post('/signup', function(req, res) {
 
   db.user.findOrCreate({
@@ -22,11 +27,11 @@ router.post('/signup', function(req, res) {
         successFlash: 'User Created. You are logged in.'
       })(req, res);
     } else {
-      console.log('user with that email already exists');
+      req.flash('error', 'user with that email already exists');
       res.redirect('/auth/signup');
     }
   }).catch(function(error) {
-    console.log('error occurred', error.message);
+    req.flash('error', 'Auth Error Occurred');
     res.redirect('/auth/signup');
   });
 

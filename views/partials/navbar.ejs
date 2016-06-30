@@ -31,8 +31,11 @@
           <i class="download"> 0 Kb</i>
         </li>
         <li></li>
-        <li><a href="/profile" class="no-padding"> Profile</a></li>
-
+        <% if (currentUser) { %>
+          <li><a href="/profile" class="no-padding"> Profile</a></li>
+        <% } else { %>
+          <li><a href="/auth/login" class="no-padding"> Login</a></li>
+        <% } %>
       </ul>
     </div>
 

@@ -83,8 +83,6 @@ form {
   }
 }
 
-
-
 .margin-center {
   margin: 0 auto;
 }
@@ -99,6 +97,10 @@ form {
 
 .top-neg-space {
   margin-top: -10px;
+}
+
+.extra-space {
+  margin-top: 10px;
 }
 
 .max-width {
