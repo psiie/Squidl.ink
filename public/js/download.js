@@ -25,7 +25,7 @@ function download(hash) {
     infoHash: hash,
     announce: TRACKERS
   }, onTorrentDownload);
-  initTorrent(torrent);
+  initTorrent(torrent); //global.js
 }
 
 // ===================== Callbacks ======================= //

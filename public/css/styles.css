@@ -157,8 +157,10 @@ form {
 }
 
 .after-box-media {
-  background-color: grey;
-  border: 1px solid red;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  /*background-color: grey;*/
+  /*border: 1px solid red;*/
 }
 
 .after-box-uploading {
