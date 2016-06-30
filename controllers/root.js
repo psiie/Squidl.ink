@@ -35,8 +35,10 @@ router.get('/:id', function(req, res) {
 
     res.render('download', {magnet: data.magnet});
   }).catch(function(error) {
-    console.log('error occurred in /:id ', error.message);
-    res.send('link error');
+    // console.log('error occurred in /:id ', error.message);
+    req.flash('link error');
+    // res.send('link error');
+    res.redirect('/');
   });
 });
 

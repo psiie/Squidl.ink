@@ -36,24 +36,16 @@ passport.use(new FacebookStrategy({
   callbackURL: process.env.BASE_URL + 'auth/facebook/callback',
   profileFields: ['id', 'displayName', 'email']
 }, function(accessToken, refreshToken, profile, cb) {
-  console.log('USER PROFILE------: ', profile);
-
-  // find email -> if found, modify entry
-  // else findOrCreate by facebook id
   db.user.find({
     where: { email: profile.emails[0].value }
   }).then(function(sqlAcc) {
     if (sqlAcc && profile.emails[0].value) {
-
       sqlAcc.name = profile.displayName;
       sqlAcc.facebookId = profile.id;
       sqlAcc.facebookToken = accessToken;
       sqlAcc.save();
       return cb(null, sqlAcc);
-
     } else {
-
-
       db.user.findOrCreate({
         where: { facebookId: profile.id },
         defaults: {
@@ -67,25 +59,9 @@ passport.use(new FacebookStrategy({
       }).catch(function(err) {
         return cb(err, null);
       })
-
-
     }
   })
-
-
-
-
-
-
-
 }
-
 ))
 
 module.exports = passport;
-
-
-
-    // user.facebookId = 27;
-    // console.log("UUUUUUUSSSSSSSEEEEEEERRRRRRR: ", profile.id, profile.displayName);
-    // console.log("facebookToken: ", accessToken);
