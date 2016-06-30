@@ -93,17 +93,27 @@ function destroy(torrent) {
 
 // =============== File Ready Callback =================== //
 
-// Append the torrent to the holder in HTML
-// Mostly for video/audio at this point
+// Append the torrent to the holder in HTML. Mostly for video/audio
 function appendHolder(torrent) {
   torrent.files.forEach(function(file) {
 
-    // If this is playable media and is not uploading
-    // if (!isUploading) { mediaInit(file); } // inside download.js
-
     // If this is playable media and the stream button was clicked
     if (playMedia) {
-      mediaInit(file); // inside download.js
+      // Check if the extension is mp4, m4v, m4a, mkv, mp3
+      // Only run if the extension IS. This will place the video player in
+      // but not anything else [as raw text]
+      if ( mediaFormats.indexOf(getExtension(file.name)) !== -1 ) {
+
+        $('.before-box').addClass('hide');
+        $('.after-box-downloading').addClass('hide');
+        $('.after-box-media').removeClass('hide');
+
+        file.appendTo('.after-box-media', function(error) {
+          console.log('inside appendTo()');
+          // If it is not a video, error == true.
+          if (error) { console.log('error in appendHolder(). Must not be playable media'); }
+        });
+      }
     }
 
     $('.filename').text(file.name);
@@ -122,14 +132,3 @@ function appendHolder(torrent) {
     });
   });
 }
-
-
-// getHash()
-
-// <div class="container">
-//       <%- JSON.stringify(currentUser) %>
-//       <% include partials/alerts %>
-//       <h1>Authentication</h1>
-//       <%- body %>
-//     </div>
-
