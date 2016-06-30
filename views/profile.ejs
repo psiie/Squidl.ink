@@ -1,5 +1,19 @@
 <div class="box">
-  <h2><%= currentUser.name %>'s Profile Page</h2>
+  <div class="small-12 columns max-width text-center stats-box">
+    <div class="row">
+      <h3><%= currentUser.name %>'s Stats</h3>
+    </div>
 
-  <!-- <a href="/">Home</a> -->
+    <div class="row">
+      <div>Uploaded: <i class="blue"><%= (currentUser.uploaded/1014/1024).toFixed(2) %>MB</i></div>
+      <div>Downloaded: <i class="blue"><%= (currentUser.downloaded/1024/1024).toFixed(2) %>MB</i></div>
+      <div>
+        Share Ratio:<i class="blue">
+        <%= (currentUser.uploaded/currentUser.downloaded) > 1000 ? '∞' : (currentUser.uploaded/currentUser.downloaded).toFixed(2) %></i>
+      </div>
+      <div>Created: <i class="blue"><%= currentUser.created %> Links</i></div>
+    </div>
+  </div>
+
+
 </div>

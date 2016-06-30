@@ -131,6 +131,17 @@ form {
   width: 49%;
 }
 
+.stats-box {
+  padding: 20px 0;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 4px solid #333333;
+}
+
+.blue {
+  color: #2199e8;
+}
+
 /*---------------------------*/
 /* Specifics (iffy reusability)*/
 /*---------------------------*/
@@ -232,11 +243,6 @@ form {
   .menu.vertical>li {
     display: block;
   }
-
-}
-
-.btn-signup {
-  background-color: #8a8a8a;
 }
 
 
