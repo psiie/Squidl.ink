@@ -6,6 +6,8 @@ var session = require('express-session');
 var passport = require('./config/ppConfig');
 var flash = require('connect-flash');
 var isLoggedIn = require('./middleware/isLoggedIn');
+var Hashids = require('hashids'); //also in root.js
+var hashids = new Hashids('3pLtFMMGbTFfk9kFP1xafNnn0SoKS379HMfhCjKt');
 var app = express();
 
 app.set('view engine', 'ejs');
@@ -31,10 +33,10 @@ app.use(function(req, res, next) {
 
 app.get('/profile', isLoggedIn, function(req, res) {
 
-
+  // Get the link click count
   var qClicked;
   query = 'SELECT SUM(links."uniqueClick") FROM links INNER JOIN users ON users.id = CAST(links.owner as integer) WHERE CAST(links.owner as integer) =' +
-  req.user.id + ';'
+  req.user.id + ';';
   db.sequelize.query(query)
     .spread(function(results, metadata) {
       qClicked = results[0].sum;
@@ -42,11 +44,25 @@ app.get('/profile', isLoggedIn, function(req, res) {
       console.log('error in profile sum query', err);
     });
 
+  // get a list of active links by the user
+  var links;
+  query = 'SELECT links.id, links.magnet FROM links INNER JOIN users ON users.id = CAST(links.owner as integer) WHERE CAST(links.owner as integer) = ' +
+  req.user.id + ';';
+  db.sequelize.query(query)
+    .spread(function(results, metadata) {
+      links = results;
+      links.forEach(function(link) {
+        link.id = hashids.encode(link.id);
+      });
+    }).catch(function(err) {
+      console.log('error in query for profiles links');
+    });
+
 
   db.user.find({
     where: { id: req.user.id }
   }).then(function(info) {
-    res.render('profile', {linksClicked: qClicked});
+    res.render('profile', {linksClicked: qClicked, ownedLinks: links});
   }).catch(function(error) {
     console.log(error);
     res.send('server error');

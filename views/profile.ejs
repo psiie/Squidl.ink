@@ -15,6 +15,20 @@
       <div>Created: <i class="blue"><%= currentUser.created %> Links</i></div>
       <div>Links Opened: <i class="blue"><%= linksClicked %></i></div>
     </div>
+
+    <div class="row extra-space">
+        <div class="large-12 columns">
+          <label>My Links
+            <select class="mylinks width25p">
+              <% ownedLinks.forEach(function(link) { %>
+                  <option value="<%= link.id %>"><%= link.id %></option>
+              <% }) %>
+            </select>
+            <i class="button prof-open button-margin">Open</i>
+            <i class="button prof-delete alert button-margin">Delete</i>
+          </label>
+        </div>
+      </div>
   </div>
 
 

@@ -31,7 +31,7 @@ form {
   width: inherit;
 }
 
-.alert {
+.alert-banner {
   color: white;
   margin: 0 40px;
   padding: 5px 0;
@@ -110,6 +110,10 @@ form {
   margin: 0 auto;
 }
 
+.width25p {
+  width: 25%;
+}
+
 .icons {
   min-width: 285px;
   display: flex;
@@ -144,6 +148,9 @@ form {
   color: #2199e8;
 }
 
+.button-margin {
+  margin-top: 6px;
+}
 /*---------------------------*/
 /* Specifics (iffy reusability)*/
 /*---------------------------*/
@@ -183,7 +190,7 @@ form {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%; */
-  border: 5px dashed #aaa;
+  border: 3px dashed #ccc;
   border-radius: 50px;
   background-color: #eee;
   color: #244e82;

@@ -26,6 +26,9 @@ $(document).ready(function(){
   $(document).foundation(); // Foundation init according to documentation
   var clipboard = new Clipboard('.btn-copy'); // Sets up copy button
 
+  // Misc buttons
+  // =================================== //
+
   // Copy to clipboard
   $('.btn-copy').click(function() {
     if ( !$('.btn-copy').hasClass('success') ) {
@@ -33,9 +36,29 @@ $(document).ready(function(){
     }
   })
 
+  // Am I still using this??
   $('.btn-watch-media').click(function() {
     $('.after-box-media').removeClass('hide');
   });
+
+  // Profile page buttons
+  $('.prof-open').click(function() {
+    location.href = '/' + $('.mylinks').find(":selected").text();
+  });
+
+  $('.prof-delete').click(function() {
+    $.ajax({
+      url: '/auth/delete/' + $('.mylinks').find(":selected").text(),
+      type: 'DELETE',
+      content: false,
+      success: function(){
+        console.log('sent stats update successfully');
+      }
+    });
+    $('.mylinks').find(":selected").text('Deleted');
+  });
+
+
 
 
   // Animations & Sizing
@@ -129,8 +152,8 @@ $(document).ready(function(){
 
 
 function updateStats(progress, upload, download, peers, uploaded, downloaded, ratio, timeRemaining) {
-  $('.time-remaining').text(Math.floor(timeRemaining/1000) + ' seconds remaining');
-  $('.percent').text(Math.floor(progress*100) + '% Done');
+  // $('.time-remaining').text(Math.floor(timeRemaining/1000) + ' seconds remaining');
+  // $('.percent').text(Math.floor(progress*100) + '% Done');
   $('.progress-bar').css('width', progress*100 + '%');
   $('.upload').text(formatSpeed(upload) );
   $('.download').text(formatSpeed(download) );

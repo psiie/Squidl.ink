@@ -1,6 +1,8 @@
 var express = require('express');
 var db = require('../models');
 var passport = require('../config/ppConfig');
+var Hashids = require('hashids');
+var hashids = new Hashids('3pLtFMMGbTFfk9kFP1xafNnn0SoKS379HMfhCjKt');
 var router = express.Router();
 
 router.get('/signup', function(req, res) {
@@ -58,6 +60,23 @@ router.post('/login', passport.authenticate('local', {
 router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
-})
+});
+
+router.delete('/delete/:hash', function(req, res) {
+  var hash = hashids.decode(req.params.hash);
+
+  db.link.find({
+    where: { id: hash }
+  }).then(function(theLink) {
+    if (req.user.id == theLink.owner) {
+      theLink.destroy()
+    } else {
+      req.flash('error', 'You do not own this link');
+    }
+  }).catch(function(err) {
+    console.log('error in delete hash function', err);
+  });
+
+});
 
 module.exports = router;

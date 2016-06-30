@@ -9,6 +9,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/new/:hash', function(req, res) {
+  console.log("CREATING NEW");
   db.link.findOrCreate({
     where: { magnet: req.params.hash },
     defaults: {
@@ -16,7 +17,7 @@ router.post('/new/:hash', function(req, res) {
       uniqueClick: 0
     }
   }).spread(function(data, created) {
-
+    console.log("DATA: ", data);
     var idHash = hashids.encode(data.id);
     res.send({msg:'success', id: idHash });
   }).catch(function(error) {
