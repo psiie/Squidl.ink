@@ -30,14 +30,28 @@ app.use(function(req, res, next) {
 
 
 app.get('/profile', isLoggedIn, function(req, res) {
+
+
+  var qClicked;
+  query = 'SELECT SUM(links."uniqueClick") FROM links INNER JOIN users ON users.id = CAST(links.owner as integer) WHERE CAST(links.owner as integer) =' +
+  req.user.id + ';'
+  db.sequelize.query(query)
+    .spread(function(results, metadata) {
+      qClicked = results[0].sum;
+    }).catch(function(err) {
+      console.log('error in profile sum query', err);
+    });
+
+
   db.user.find({
     where: { id: req.user.id }
   }).then(function(info) {
-    res.render('profile');
+    res.render('profile', {linksClicked: qClicked});
   }).catch(function(error) {
     console.log(error);
     res.send('server error');
-  })
+  });
+
 });
 
 // app.get('/', function(req, res) {

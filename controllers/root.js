@@ -8,19 +8,6 @@ router.get('/', function(req, res) {
   res.render('index');
 });
 
-// router.post('/remove/:hash', function(req, res) {
-
-//   // lock down so only the owner or anon can destroy
-//   db.link.find({
-//     where: { magnet: req.params.hash }
-//   }).then(function(entry) {
-//     entry.destroy();
-//   }).catch(function(err) {
-//     console.log('error destroying entry', err);
-//   })
-
-// })
-
 router.post('/new/:hash', function(req, res) {
   db.link.findOrCreate({
     where: { magnet: req.params.hash },

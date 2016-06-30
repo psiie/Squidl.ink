@@ -12,6 +12,7 @@
         <%= (currentUser.uploaded/currentUser.downloaded) > 1000 ? '∞' : (currentUser.uploaded/currentUser.downloaded).toFixed(2) %></i>
       </div>
       <div>Created: <i class="blue"><%= currentUser.created %> Links</i></div>
+      <div>Links Opened: <i class="blue"><%= linksClicked %></i></div>
     </div>
   </div>
 
