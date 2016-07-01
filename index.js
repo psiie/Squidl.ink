@@ -7,7 +7,7 @@ var passport = require('./config/ppConfig');
 var flash = require('connect-flash');
 var isLoggedIn = require('./middleware/isLoggedIn');
 var Hashids = require('hashids'); //also in root.js
-var hashids = new Hashids('3pLtFMMGbTFfk9kFP1xafNnn0SoKS379HMfhCjKt');
+var hashids = new Hashids(process.env.HASH_ID);
 var app = express();
 
 app.set('view engine', 'ejs');

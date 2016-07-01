@@ -5,7 +5,7 @@
 // small zip: eedf3cc0ae3f877b849b1da70356a06f717f83d0
 
 // auto open new window: window.open(url, '_blank');
-var playMedia = false;
+var playMedia = true; // depricated. Remove all instances
 var isUploading = false;
 var mediaFormats = ['mp4','webm','m4v','m4a',
   'mp3','wav','jpg','gif','png','pdf','txt'];

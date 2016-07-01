@@ -2,7 +2,7 @@ var express = require('express');
 var db = require('../models');
 var router = express.Router();
 var Hashids = require('hashids');
-var hashids = new Hashids('3pLtFMMGbTFfk9kFP1xafNnn0SoKS379HMfhCjKt');
+var hashids = new Hashids(process.env.HASH_ID);
 
 router.get('/', function(req, res) {
   res.render('index');

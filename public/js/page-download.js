@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   $('.btn-stream').click(function(){
-    playMedia = true;
+    playMedia = true; // depricated
     streamOrDownload(); // same file, below.
   });
   $('.btn-dl').click(function(){
@@ -21,6 +21,8 @@ function streamOrDownload() {
   $('.downloaded').removeClass('hide');
   $('.uploaded').removeClass('hide');
   $('.filesize').removeClass('hide');
+  $('.percent').removeClass('hide');
+  $('.time-remaining').removeClass('hide');
   console.log( 'going to download from ' + hash );
   // getHash(hash);
   download(hash); // download.js

@@ -2,7 +2,7 @@ var express = require('express');
 var db = require('../models');
 var passport = require('../config/ppConfig');
 var Hashids = require('hashids');
-var hashids = new Hashids('3pLtFMMGbTFfk9kFP1xafNnn0SoKS379HMfhCjKt');
+var hashids = new Hashids(process.env.HASH_ID);
 var router = express.Router();
 
 router.get('/signup', function(req, res) {

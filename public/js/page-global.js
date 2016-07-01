@@ -152,8 +152,9 @@ $(document).ready(function(){
 
 
 function updateStats(progress, upload, download, peers, uploaded, downloaded, ratio, timeRemaining) {
-  // $('.time-remaining').text(Math.floor(timeRemaining/1000) + ' seconds remaining');
   // $('.percent').text(Math.floor(progress*100) + '% Done');
+  $('.time-remaining').text(Math.floor(timeRemaining/1000) + ' seconds remaining');
+  $('.percent').text(Math.floor(progress*100) + '% Done');
   $('.progress-bar').css('width', progress*100 + '%');
   $('.upload').text(formatSpeed(upload) );
   $('.download').text(formatSpeed(download) );
