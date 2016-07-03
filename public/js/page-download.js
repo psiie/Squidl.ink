@@ -5,6 +5,14 @@ $(document).ready(function(){
     streamOrDownload(); // same file, below.
   });
   $('.btn-dl').click(function(){
+    if ( ($('.isItLarge').attr('value') == 'true') && navigator.userAgent.search("Firefox") == -1 ) {
+      swal({
+        title: "File Larger Than 1GB",
+        text: "Due to limitations in certain web browsers, you may not be able to download the file to the HDD. <br><br>Switching to <b>Firefox</b> for downloading is <i>highly</i> recommended.",
+        type: "warning",
+        html: true
+      });
+    }
     streamOrDownload(); // same file, below
   });
 

@@ -8,13 +8,14 @@ router.get('/', function(req, res) {
   res.render('index');
 });
 
-router.post('/new/:hash', function(req, res) {
-  console.log("CREATING NEW");
+router.post('/new/:largeFile/:hash', function(req, res) {
+  console.log("CREATING NEW", req.params.largeFile);
   db.link.findOrCreate({
     where: { magnet: req.params.hash },
     defaults: {
       owner: req.user ? req.user.id : null,
-      uniqueClick: 0
+      uniqueClick: 0,
+      isLarge: Boolean(parseInt(req.params.largeFile))
     }
   }).spread(function(data, created) {
     console.log("DATA: ", data);
@@ -34,7 +35,7 @@ router.get('/:id', function(req, res) {
     data.uniqueClick += 1;
     data.save();
 
-    res.render('download', {magnet: data.magnet});
+    res.render('download', {magnet: data.magnet, isLarge: data.isLarge});
   }).catch(function(error) {
     // console.log('error occurred in /:id ', error.message);
     req.flash('link error');

@@ -6,6 +6,7 @@
 // navigator.userAgent.search("Firefox")
 
 // auto open new window: window.open(url, '_blank');
+var isOver1GB = false;
 var playMedia = true; // depricated. Remove all instances
 var isUploading = false;
 var mediaFormats = ['mp4','webm','m4v','m4a',

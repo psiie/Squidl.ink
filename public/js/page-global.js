@@ -142,7 +142,9 @@ $(document).ready(function(){
       $('.box').removeClass('dragging');
     };
     var file = e.originalEvent.dataTransfer.files[0];
+    // Check if file is over 1GB. This will cause problems in non-firefox browsers
     if (file.size > 1000000000) {
+      isOver1GB = true;
       swal({
         title: "File Larger Than 1GB",
         text: "Due to limitations in certain web browsers, the recipient may not be able to download the file to the HDD. <br><br>Using <b>Firefox</b> for downloading is recommended.",
