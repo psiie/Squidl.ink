@@ -3,26 +3,27 @@
 // fs.lunik.xyz/#0337d58a486bebd6be450f60dd02e95042ca2350
 // small music: fs.lunik.xyz/#e06391491356e372aed67f4bdfca801d8899c117
 // small zip: eedf3cc0ae3f877b849b1da70356a06f717f83d0
+// navigator.userAgent.search("Firefox")
 
 // auto open new window: window.open(url, '_blank');
 var playMedia = true; // depricated. Remove all instances
 var isUploading = false;
 var mediaFormats = ['mp4','webm','m4v','m4a',
   'mp3','wav','jpg','gif','png','pdf','txt'];
-var TRACKERS = [
-  'ws://torrent.lunik.xyz:8000',
-  'udp://torrent.lunik.xyz:8000',
-  'http://torrent.lunik.xyz:8000/announce',
-  'wss://tracker.webtorrent.io',
-  'udp://tracker.internetwarriors.net:1337',
-  'udp://tracker.leechers-paradise.org:6969',
-  'udp://tracker.coppersurfer.tk:6969',
-  'udp://exodus.desync.com:6969',
-  'wss://tracker.btorrent.xyz',
-  'wss://tracker.openwebtorrent.com',
-  'wss://tracker.fastcast.nz'
-]
-
+// var TRACKERS = [
+//   'ws://torrent.lunik.xyz:8000',
+//   'udp://torrent.lunik.xyz:8000',
+//   'http://torrent.lunik.xyz:8000/announce',
+//   'wss://tracker.webtorrent.io',
+//   'udp://tracker.internetwarriors.net:1337',
+//   'udp://tracker.leechers-paradise.org:6969',
+//   'udp://tracker.coppersurfer.tk:6969',
+//   'udp://exodus.desync.com:6969',
+//   'wss://tracker.btorrent.xyz',
+//   'wss://tracker.openwebtorrent.com',
+//   'wss://tracker.fastcast.nz'
+// ]
+var TRACKERS = ['ws://torrent.lunik.xyz:8000'] // tmp single tracker
 
 // Initialize event on torrent. Mostly status
 function initTorrent(torrent) {
@@ -139,9 +140,9 @@ function appendHolder(torrent) {
     file.getBlobURL(function(error, url) {
       if (error) { console.log('error in getBlobURL. ', error); }
       $('.loadAnim').addClass('hide');
-      $('.filename').wrap('<h3><a href="" class="ready-link"></a></h3>')
+      $('.filename').wrap('<h3><a href="" class="ready-link"></a></h3>');
       $('.ready-link').attr('href', url );
-      $('.ready-link').attr('download', torrent.name);;
+      $('.ready-link').attr('download', torrent.name);
       $('.ready-link').text(torrent.name);
       $('.ready-link').removeClass('hide');
 

@@ -1,6 +1,12 @@
-# P2P Fileshare
+# Squidl.ink
 
-Express authentication template using Passport + flash messages + custom middleware
+
+
+## Todo
+
+## Bugs
+
+
 
 ## Getting Started
 
@@ -12,3 +18,5 @@ Express authentication template using Passport + flash messages + custom middlew
   * Change the database names in `config/config.json` to reflect your project
   * Run `createdb project_name_development` to create the development database
   * Run `createdb project_name_test` to create the test database
+* Hints
+  * Utilize `foremand run nodemon` to have .env variables easier

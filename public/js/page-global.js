@@ -17,6 +17,7 @@ var timerPUT = setInterval(function() {
     downloaded = 0;
     secondsTillPut = -1;
   }
+  console.log("stp: ", secondsTillPut);
 }, 1000);
 
 
@@ -141,6 +142,14 @@ $(document).ready(function(){
       $('.box').removeClass('dragging');
     };
     var file = e.originalEvent.dataTransfer.files[0];
+    if (file.size > 1000000000) {
+      swal({
+        title: "File Larger Than 1GB",
+        text: "Due to limitations in certain web browsers, the recipient may not be able to download the file to the HDD. <br><br>Using <b>Firefox</b> for downloading is recommended.",
+        type: "warning",
+        html: true
+      });
+    }
 
     // Add check to only run this if logged in
     putStat(0,0,1); // Update the user profile for uploading a new file
@@ -206,10 +215,11 @@ function downloadLink(link, fileName) {
 function putStat(dl, ul, isNew) {
   // All three parameters are integers even though new is a boolean conceptually
   isNew > 1 ? isNew = 1 : false; // Protection for over-adding
+  // Somehow, this is making a second AJAX call to /auth/login and returning a 404
+  // Remove the ajax call and the error (in console) goes away.
   $.ajax({
     url: '/stats/' + dl + '/' + ul + '/' + isNew,
     type: 'PUT',
-    content: false,
     success: function(){ console.log('sent stats update successfully');}
   });
 }

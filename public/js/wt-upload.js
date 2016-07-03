@@ -17,6 +17,7 @@ function onTorrentSeed(torrent) {
     console.log('got back the post, ', returned);
     idHash = returned.id;
     // $('.share-link').text(idHash);
+
     $('.share-link').attr('value', 'http://squidl.ink/' + idHash)
     history.pushState('data', '', '/' + idHash);
     $('.before-box').addClass('hide');

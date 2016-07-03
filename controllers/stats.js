@@ -3,6 +3,7 @@ var db = require('../models');
 var router = express.Router();
 
 router.put('/:ul/:dl/:created', function(req, res) {
+  console.log('entered inside');
 
   db.user.find({
     where: { id: req.user.id }
