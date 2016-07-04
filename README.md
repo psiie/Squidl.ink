@@ -1,5 +1,5 @@
 # Squidl.ink
-A tool for helping to get files from A to B. All without the need for additional software or hardware.
+A tool for helping to get files from A to B. All without the need for additional software or hardware. Squidlink utilizes Webtorrent as it's core but is geared towards ease of use for the average person.
 
 ## Todo
 * Delete links on exit from database
