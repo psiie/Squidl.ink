@@ -47,6 +47,10 @@ form {
   background-color: #2199e8;
 }
 
+.logo {
+  height: 26px;
+}
+
 /*---------------------------*/
 /* Customs (highly reusable) */
 /*---------------------------*/
@@ -150,6 +154,10 @@ form {
 
 .button-margin {
   margin-top: 6px;
+}
+
+.pointer:hover {
+  cursor: pointer;
 }
 /*---------------------------*/
 /* Specifics (iffy reusability)*/

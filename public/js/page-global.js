@@ -26,6 +26,31 @@ var timerPUT = setInterval(function() {
 $(document).ready(function(){
   $(document).foundation(); // Foundation init according to documentation
   var clipboard = new Clipboard('.btn-copy'); // Sets up copy button
+  // First Visit Alert
+  // =================================== //
+  var firstVisit = localStorage.getItem('first');
+  if (firstVisit !== "1") {
+    swal({
+      imageUrl: "img/logo-color.png",
+      title: "What is Squidlink?",
+      text: "Squidl.ink helps users get files from one device to another." +
+      " Simply drop a file to generate a unique code just for you. Share accordingly." +
+      "<br><br>The file never lives on the internet & dies when all links close!" +
+      "<h4><b>Why?</b></h4>Even after 46 years, getting files from one filesystem to another proves difficult." +
+      " Now with Squidl, transfering files requires no software, CD's, Flash Drives or Cloud needed." +
+      " You are always in control of your own files.",
+      html: true,
+      showCancelButton: true,
+      confirmButtonText: "Okay",
+      cancelButtonText: "Don't Show Again"
+    }, function(isConfirm) {
+      if (!isConfirm) {
+        localStorage.setItem('first', 1);
+      }
+    });
+  }
+
+
 
   // Misc buttons
   // =================================== //
@@ -57,6 +82,27 @@ $(document).ready(function(){
       }
     });
     $('.mylinks').find(":selected").text('Deleted');
+  });
+
+  $('.moreinfo').click(function() {
+    swal({
+      imageUrl: "img/logo-color.png",
+      title: "What is Squidlink?",
+      text: "Squidl.ink helps users get files from one device to another." +
+      " Simply drop a file to generate a unique code just for you. Share accordingly." +
+      "<br><br>The file never lives on the internet & dies when all links close!" +
+      "<h4><b>Why?</b></h4>Even after 46 years, getting files from one filesystem to another proves difficult." +
+      " Now with Squidl, transfering files requires no software, CD's, Flash Drives or Cloud needed." +
+      " You are always in control of your own files.",
+      html: true,
+      showCancelButton: true,
+      confirmButtonText: "Okay",
+      cancelButtonText: "Show Every Visit"
+    }, function(isConfirm) {
+      if (!isConfirm) {
+        localStorage.setItem('first', 0);
+      }
+    });
   });
 
 
