@@ -11,13 +11,12 @@ var timerPUT = setInterval(function() {
     secondsTillPut -= 1;
   }
   if (secondsTillPut === 0) {
-    console.log('sent a put of: ', uploaded, downloaded, 0);
+    // console.log('sent a put of: ', uploaded, downloaded, 0);
     putStat(uploaded, downloaded, 0);
     uploaded = 0;
     downloaded = 0;
     secondsTillPut = -1;
   }
-  console.log("stp: ", secondsTillPut);
 }, 1000);
 
 
@@ -76,11 +75,10 @@ $(document).ready(function(){
     $.ajax({
       url: '/auth/delete/' + $('.mylinks').find(":selected").text(),
       type: 'DELETE',
-      content: false,
-      success: function(){
-        console.log('sent stats update successfully');
-      }
-    });
+      content: false
+      // success: function(){
+      //   console.log('sent stats update successfully');
+      });
     $('.mylinks').find(":selected").text('Deleted');
   });
 
@@ -119,7 +117,6 @@ $(document).ready(function(){
   $(window).resize(function() {
     if ( $(window).width() < 640 && slideDisabled === false ) {
       slideDisabled = true;
-      // console.log(slideDisabled);
       $('.hover').slideDown('slow');
       $('.hover-inverse').slideUp('slow');
 
@@ -159,7 +156,6 @@ $(document).ready(function(){
     if ( !$('.box').hasClass('dragging') ) {
       $('.box').addClass('dragging');
     };
-    // console.log('dragover');
     return false
   })
   $('.container').on('dragleave', '.before-box', function(e) {
@@ -170,7 +166,6 @@ $(document).ready(function(){
     if ( $('.box').hasClass('dragging') ) {
       $('.box').removeClass('dragging');
     };
-    // console.log('dragleave');
     return false
   })
   $('.container').on('drop', '.before-box', function(e) {
@@ -267,7 +262,7 @@ function putStat(dl, ul, isNew) {
   // Remove the ajax call and the error (in console) goes away.
   $.ajax({
     url: '/stats/' + dl + '/' + ul + '/' + isNew,
-    type: 'PUT',
-    success: function(){ console.log('sent stats update successfully');}
+    type: 'PUT'
+    // success: function(){ console.log('sent stats update successfully');}
   });
 }
