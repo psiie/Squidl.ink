@@ -2,6 +2,7 @@
 A tool for helping to get files from A to B. All without the need for additional software or hardware. Squidlink utilizes Webtorrent as it's core but is geared towards ease of use for the average person.
 
 ## Todo
+* Add status messages on on-drop-loading screen. It can be rather long & appear unresponsive
 * Delete links on exit from database
 * Offer a password lock for links
 * incorperate encryption
